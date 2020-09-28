@@ -713,6 +713,7 @@ class SlideToActView @JvmOverloads constructor(
                 onSlideToActAnimationEventListener?.onSlideCompleteAnimationStarted(
                     this@SlideToActView, mPositionPerc
                 )
+                onSlideCompleteListener?.onSlideComplete(this@SlideToActView)
             }
 
             override fun onAnimationCancel(p0: Animator?) {
@@ -723,7 +724,6 @@ class SlideToActView @JvmOverloads constructor(
                 onSlideToActAnimationEventListener?.onSlideCompleteAnimationEnded(
                     this@SlideToActView
                 )
-                onSlideCompleteListener?.onSlideComplete(this@SlideToActView)
             }
 
             override fun onAnimationRepeat(p0: Animator?) {
