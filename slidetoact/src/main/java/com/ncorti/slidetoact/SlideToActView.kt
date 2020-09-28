@@ -271,6 +271,7 @@ class SlideToActView @JvmOverloads constructor(
     var onSlideCompleteListener: OnSlideCompleteListener? = null
     var onSlideResetListener: OnSlideResetListener? = null
     var onSlideUserFailedListener: OnSlideUserFailedListener? = null
+    var onSliderMovedListener: OnSliderMovedListener? = null
 
     init {
         val actualOuterColor: Int
@@ -606,6 +607,7 @@ class SlideToActView @JvmOverloads constructor(
                         if (bumpVibration > 0 && wasIncomplete && mPositionPerc == 1f) {
                             handleVibration()
                         }
+                        onSliderMovedListener?.onSliderMoved(this, mPositionPerc)
                     }
                 }
             }
@@ -959,6 +961,23 @@ class SlideToActView @JvmOverloads constructor(
          * @param isOutside True if user pressed outside the cursor
          */
         fun onSlideFailed(view: SlideToActView, isOutside: Boolean)
+    }
+
+
+    /**
+     * Event handler for changes to slider progress.
+     * You can subscribe to this event to get notified when the user moves
+     * the slider.
+     *
+     * You can use this listener to play haptic feedback or display other text.
+     */
+    interface OnSliderMovedListener {
+        /**
+         * Called when user moves the slider
+         * @param view The SlideToActView who created the event
+         * @param percent value of slider progress
+         */
+        fun onSliderMoved(view: SlideToActView, percent: Float)
     }
 
     /**
