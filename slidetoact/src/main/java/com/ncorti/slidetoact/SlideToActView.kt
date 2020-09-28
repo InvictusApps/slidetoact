@@ -467,12 +467,12 @@ class SlideToActView @JvmOverloads constructor(
         mTextPaint.alpha = (255 * mPositionPercInv).toInt()
         // Checking if the TextView has a Transformation method applied (e.g. AllCaps).
         val textToDraw = mTextView.transformationMethod?.getTransformation(text, mTextView) ?: text
-        val leftOffset = mAreaHeight
-
+        val leftOffset = (mAreaHeight - 2 * mActualAreaMargin).toFloat() / mAreaHeight.toFloat() * mBorderRadius.toFloat() * 2
+        println("$mAreaHeight vs $leftOffset")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val maxWidth = mAreaWidth - (2 * mActualAreaWidth) + leftOffset
+            val maxWidth = mAreaWidth - (2 * mActualAreaWidth) - leftOffset
             val textLayout = StaticLayout.Builder
-                    .obtain(textToDraw, 0, textToDraw.length, mTextPaint, maxWidth)
+                    .obtain(textToDraw, 0, textToDraw.length, mTextPaint, maxWidth.toInt())
                     .setAlignment(Layout.Alignment.ALIGN_NORMAL)
                     .setMaxLines(4)
                     .build()
