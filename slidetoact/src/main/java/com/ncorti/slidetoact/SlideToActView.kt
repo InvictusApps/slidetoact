@@ -59,8 +59,16 @@ class SlideToActView @JvmOverloads constructor(
 
     private var mDesiredSliderHeightDp: Float = 72F
     private var mDesiredSliderWidthDp: Float = 280F
-    private var mDesiredSliderHeight: Int = 0
-    private var mDesiredSliderWidth: Int = 0
+    var mDesiredSliderHeight: Int = 0
+        set(value) {
+            field = value
+            requestLayout()
+        }
+    var mDesiredSliderWidth: Int = 0
+        set(value) {
+            field = value
+            requestLayout()
+        }
 
     /* -------------------- MEMBERS -------------------- */
 
