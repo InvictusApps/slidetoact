@@ -182,7 +182,7 @@ class SlideToActView @JvmOverloads constructor(
     private var mTextXPosition = -1f
 
     /** Private size for the text message */
-    private var mTextSize: Int = 0
+    var mTextSize: Int = 0
         set(value) {
             field = value
             mTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize.toFloat())
